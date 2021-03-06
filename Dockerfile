@@ -2,11 +2,11 @@
 FROM debian:bullseye-slim
 
 # manually usrmerge because pacman is expecting it
+#    rm -rf /var/lib/apt/lists && \
 RUN set -ex && \
     apt-get update && \
     apt-get install -y busybox-static && \
     apt-get clean && \
-    rm -rf /var/lib/apt/lists && \
     busybox mv /sbin/* /usr/sbin/ && \
     busybox rmdir sbin && \
     busybox ln -s /usr/sbin /sbin && \
